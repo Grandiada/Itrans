@@ -1,0 +1,41 @@
+﻿
+
+@model IEnumerable<Itrans.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "HomePage";
+}
+
+
+<h2>Users</h2>
+@using (Html.BeginForm("Delete1", "Account", FormMethod.Post))
+{
+    <button name="action" type="submit" value="ban">Заблокировать</button>
+    <button name="action" type="submit" value="delete">Удалить</button>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Lockout</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><input id="Ids" name="Ids" type="checkbox" value="@item.Id"/></td>
+            <td>@item.Id</td>
+            <td>@item.Email</td>
+            <td>@item.LockoutEnabled</td>
+            <td>
+                <a href="/Account/Ban/@item.Id">Ban</a>
+
+            </td>
+            <td>
+                <a href="/Account/Delete/@item.Id">Delete</a>
+
+            </td>
+        </tr>
+    }
+</table>
+}
